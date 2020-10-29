@@ -24,10 +24,16 @@ const Weather = (props) => {
                 transitionEnter={false}
                 transitionLeave={false}>
                     <Row>
-                        <Col>
+                        <Col md={6}>
                             <Card>
                                 <CardBody>
-                                    Feel free to adjust this page however you see fit to create.
+                                    <CardTitle>
+                                        Introduction
+                                    </CardTitle>
+                                    <p>
+                                        Feel free to adjust this page however you see fit to create.  There should be no need to create any custom CSS.
+                                        The template is built off of ReactStrap which is based on Bootstrap 4.
+                                    </p>
                                 </CardBody>
                             </Card>
                         </Col>

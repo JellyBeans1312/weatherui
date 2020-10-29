@@ -7,10 +7,6 @@ import TitleComponent2 from "./PageTitleExamples/Variation2";
 import TitleComponent3 from "./PageTitleExamples/Variation3";
 
 class PageTitle extends Component {
-  randomize(myArray) {
-    return myArray[Math.floor(Math.random() * myArray.length)];
-  }
-
   render() {
     let {
       enablePageTitleIcon,
@@ -41,7 +37,6 @@ class PageTitle extends Component {
               </div>
             </div>
           </div>
-          <div className="page-title-actions">{this.randomize(arr)}</div>
         </div>
       </div>
     );
