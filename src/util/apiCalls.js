@@ -1,6 +1,6 @@
 export const getLonLat = async (cityName) => {
 
-  const response = await fetch(`api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=347a9a3a94cba1f28b40a02f9da0c6c3`, {
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=347a9a3a94cba1f28b40a02f9da0c6c3`, {
     headers: {
       'Content-Type': 'application/json'
     }
