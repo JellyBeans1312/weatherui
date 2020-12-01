@@ -1,7 +1,20 @@
 import React, { Fragment, Component } from "react";
-import { Row, Col, Card, CardBody, CardTitle } from "reactstrap";
+import { 
+  Row,
+  Button,
+  Col,
+  Card,
+  CardBody, 
+  CardTitle, 
+  UncontrolledButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  Nav,
+  NavItem,
+  NavLink, } from "reactstrap";
 import { getWeatherForCity } from '../../util/apiCalls.js'
 import Loader from "react-loaders";
+
 
 import { WeatherTable } from './Tables/index'
 import Area from './Charts/Area'
@@ -17,6 +30,7 @@ import Weather from "./Weather";
 
 import AppHeader from "../../Layout/AppHeader";
 import AppSidebar from "../../Layout/AppSidebar";
+import { Dropdown } from "./Dropdown";
 
 
 
@@ -24,7 +38,15 @@ export default class WeatherPage extends Component {
   constructor() {
     super();
     this.state = {
-      error: ''
+      error: '',
+      cities: [
+        {name: 'Topeka', id: 1}, 
+        {name: 'Chicago', id: 2}, 
+        {name: 'San Antonio', id: 3},
+        {name: 'Denver', id: 4}, 
+        {name: 'Chattanooga', id: 5}
+      ],
+      newCity: ''
     }
   }
   handleChartData = (weather) => {
@@ -51,12 +73,30 @@ export default class WeatherPage extends Component {
 
     return temperatureData
   }
-  
+
+  handleChange = e => {
+    const newCity = { name: e.target.value, id: Date.now()}
+    this.setState({ newCity: newCity})
+    console.log(this.state.newCity)
+  }
+
+  addCity = e => {
+    e.preventDefault()
+
+    this.setState({ cities: [...this.state.cities, this.state.newCity]})
+    this.setState({ newCity: ''})
+  }
+
+  deleteCity = id => {
+    const filteredCities = this.state.cities.filter(city => city.id !== id)
+    this.setState({ cities: filteredCities })
+  }
+
   componentDidMount = async () => {
     try {
       const data = await getWeatherForCity('39.0473', '-95.6752');
       this.setState({uncleanData: data})
-      console.log(this.state.uncleanData)
+
       let chartData = this.handleChartData(data)
       this.setState({chartData})
     }
@@ -79,6 +119,29 @@ export default class WeatherPage extends Component {
             <Tabs defaultActiveKey="1" renderTabBar={() => <ScrollableInkTabBar />} renderTabContent={() => <TabContent />}>
           
               <TabPane tab="Chart View" key="1" class='mb-3 '>
+
+              <UncontrolledButtonDropdown className='float-right'>
+              <DropdownToggle caret color="primary" className="mb-2 mr-2">
+                Add / Choose City
+              </DropdownToggle>
+              <DropdownMenu>
+                <Nav vertical>
+                  <NavItem className="nav-item-header">
+                    
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="#">
+                      <i className="nav-link-icon pe-7s-chat"> </i>
+                      <input type='text' onChange={this.handleChange} placeholder='Add City'/>
+                      <Button size="sm" className="btn-pill ml-2" color="success" onClick={this.addCity}>
+                      Save
+                    </Button>
+                    </NavLink>
+                  </NavItem>
+                <Dropdown cities={this.state.cities} deleteCity={this.deleteCity}/>
+              </Nav>
+                </DropdownMenu>
+              </UncontrolledButtonDropdown>
                 <Row>
                   {this.state.error}
                   <Col md="3">

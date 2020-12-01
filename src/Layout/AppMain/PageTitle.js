@@ -46,56 +46,6 @@ class PageTitle extends Component {
                 {subheading}
               </div>
             </div>
-          </div>
-            <div class='page-title-actions'>
-            <UncontrolledButtonDropdown>
-              <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                Add / Choose City
-              </DropdownToggle>
-              <DropdownMenu>
-                <Nav vertical>
-                  <NavItem className="nav-item-header">
-                    
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="#">
-                      <i className="nav-link-icon pe-7s-chat"> </i>
-                      <span>Add City</span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="#">
-                      <i className="nav-link-icon pe-7s-wallet"> </i>
-                      <span onClick={() => getLonLat('Topeka')}>Topeka</span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="#">
-                      <i className="nav-link-icon pe-7s-config"> </i>
-                      <span onClick={() => getLonLat('Chicago')}>Chicago</span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="#">
-                      <i className="nav-link-icon pe-7s-coffee"> </i>
-                      <span>Denver</span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="#">
-                      <i className="nav-link-icon pe-7s-box2"> </i>
-                      <span>Chattanooga</span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem className="nav-item-divider" />
-                  <NavItem className="nav-item-btn text-right">
-                    <Button size="sm" className="btn-pill" color="success">
-                      Save
-                    </Button>
-                  </NavItem>
-                </Nav>
-              </DropdownMenu>
-            </UncontrolledButtonDropdown>
             </div>
             <div class="page-title-actions"></div>
         </div>
